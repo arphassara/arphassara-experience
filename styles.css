@@ -1,0 +1,282 @@
+/* ===== Theme (สดแต่สุภาพ) ===== */
+:root{
+  --ink:#151618;
+  --bg:#faf7f2;
+  --card:#ffffff;
+  --muted:#5f646b;
+  --line:#e7e3dc;
+
+  --p1:#6E44FF;   /* ไฮไลต์เย็น */
+  --p2:#B892FF;   /* ไล่เฉด */
+  --p3:#F2A65A;   /* อบอุ่น */
+  --p4:#F76E5C;   /* คอนทราสต์ */
+
+  --glass: rgba(255,255,255,.12);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font:16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", sans-serif;
+  background:var(--bg); color:var(--ink);
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+a{color:var(--p1); text-decoration:none}
+a:hover{text-decoration:underline}
+.container{width:min(1100px,92%); margin:0 auto}
+.section{padding:84px 0; text-align:center}
+.section-head h2{margin:0 0 6px}
+.muted{color:var(--muted)}
+.links{list-style:none; display:flex; gap:14px; justify-content:center; padding:0; margin:0}
+.btn{background:var(--ink); color:#fff; border:1px solid var(--ink); padding:10px 16px; border-radius:999px; font-weight:800; display:inline-block}
+.btn:hover{opacity:.92}
+.btn.ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+.btn.small{padding:8px 12px; font-weight:900}
+
+/* ===== Intro: Lens Reveal ===== */
+#lens-intro{
+  position:fixed; inset:0; z-index:9999; display:grid; place-items:center;
+  background: radial-gradient(1200px 800px at 50% 30%, #fff, #efeae1 60%, #e5dfd3);
+  transition: opacity .6s ease, visibility .6s ease;
+}
+#lens-intro.hidden{ opacity:0; visibility:hidden }
+#lens-intro .lens{
+  width:20vmin; aspect-ratio:1/1; border-radius:50%;
+  background: radial-gradient(circle at 35% 35%, #fff, #e9e1d6 60%, #d6cfc2);
+  box-shadow: inset 0 0 40px #fff, 0 30px 100px rgba(0,0,0,.15);
+  animation: lensIn 1.2s ease forwards;
+}
+@keyframes lensIn{ from{transform:scale(.15); opacity:.25} to{transform:scale(26); opacity:1} }
+.intro-title{
+  position:absolute; text-align:center; color:#1b1d21;
+  font-weight:900; letter-spacing:1px;
+}
+.intro-title span{ display:block; font-size:clamp(26px,5vw,52px) }
+.intro-title small{ text-transform:uppercase; opacity:.7 }
+
+/* ===== Header ===== */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg), white 25%);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:12px 0; width:min(1100px,92%); margin:auto}
+.nav-links{display:flex; gap:18px; list-style:none; margin:0; padding:0}
+.brand{font-weight:900}
+.dot{color:var(--p4)}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative; overflow:hidden; padding:64px 0 48px;
+  background:
+    radial-gradient(800px 400px at 10% 0%, rgba(110,68,255,.10), transparent 60%),
+    radial-gradient(800px 400px at 90% 100%, rgba(247,110,92,.10), transparent 60%);
+}
+.bg-shapes span{
+  position:absolute; inset:auto; width:42vmin; height:42vmin; border-radius:50%;
+  filter: blur(40px); opacity:.5; z-index:0;
+}
+.s1{ left:-10vmin; top:-8vmin; background: radial-gradient(circle, #6E44FF, transparent 60%) }
+.s2{ right:-12vmin; bottom:-12vmin; background: radial-gradient(circle, #F76E5C, transparent 60%) }
+.s3{ right:20vmin; top:-10vmin; background: radial-gradient(circle, #B892FF, transparent 60%) }
+
+.hero-inner{ position:relative; z-index:1; display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:clamp(20px,5vw,48px) }
+.hero-copy .title{ margin:0 0 10px; line-height:1.02; }
+.hero-copy .title em{ display:block; font-style:normal; font-weight:900; font-size:clamp(26px,4.2vw,40px); color:#2b2f36 }
+.hero-copy .title span{
+  font-weight:900; font-size:clamp(34px,6vw,64px);
+  background: linear-gradient(90deg, var(--p1), var(--p2), var(--p3), var(--p4));
+  -webkit-background-clip:text; background-clip:text; color:transparent; background-size:200% 100%;
+  animation: gradFlow 8s linear infinite;
+}
+@keyframes gradFlow{ 0%{background-position:0%} 100%{background-position:200%} }
+.hero-copy .lead{ color:var(--muted); margin:6px 0 16px }
+
+.hero-fig{ position:relative; justify-self:center }
+.hero-fig img{
+  width:min(440px, 90vw); border-radius:18px;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,.18)) saturate(1.04) contrast(1.02);
+  animation: floatY 7s ease-in-out infinite;
+}
+.hero-fig .glow{
+  position:absolute; left:50%; bottom:-8px; transform:translateX(-50%);
+  width:min(360px, 80%); height:20px; border-radius:999px;
+  background: radial-gradient(closest-side, rgba(110,68,255,.28), transparent 70%);
+  filter: blur(8px);
+}
+@keyframes floatY{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-8px) } }
+
+.cta{ display:flex; gap:10px; flex-wrap:wrap }
+
+/* ===== Certificates (Flip cards) ===== */
+.cert-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:16px; margin-top:12px;
+}
+.cert-card{ perspective:1000px }
+.card-3d{
+  position:relative; height:320px; border-radius:14px; overflow:hidden; cursor:pointer;
+  transform-style:preserve-3d; transition: transform .6s;
+  box-shadow:0 10px 28px rgba(0,0,0,.10); border:1px solid var(--line);
+}
+.cert-card:hover .card-3d{ transform: rotateY(180deg) }
+.face{
+  position:absolute; inset:0; backface-visibility:hidden; display:grid; place-items:center;
+}
+.face.front{
+  background:var(--card);
+}
+.face.front img{ width:100%; height:100%; object-fit:cover }
+.face.front .badge{
+  position:absolute; top:10px; left:10px; background:#000c; color:#fff; border-radius:999px; padding:4px 10px; font-weight:900; font-size:.85rem;
+}
+.face.back{
+  transform: rotateY(180deg);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--p2), white 75%), color-mix(in srgb, var(--p3), white 76%));
+  color:#1f252e; padding:16px; text-align:center;
+}
+.face.back h3{ margin:4px 0 6px }
+.face.back p{ margin:0 0 10px; color:#37414d }
+.face.back .btn{ background:#1f252e; border-color:#1f252e }
+
+/* Tilt (เล็ก ๆ) */
+.tilt{ transform-style:preserve-3d; }
+.tilt:hover{ transform: rotateX(2.2deg) rotateY(-2.2deg) }
+
+/* ===== Moments: Horizontal lane ===== */
+.section.alt{ background: #f6f3ed }
+.lane-wrap{ position:relative; overflow:hidden; padding:6px 0 10px }
+.lane{
+  display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 6px 14px;
+}
+.lane::-webkit-scrollbar{ height:8px }
+.lane::-webkit-scrollbar-thumb{ background: #c7c1b6; border-radius:6px }
+.lane-item{
+  flex:0 0 min(360px, 80vw); scroll-snap-align:start;
+  background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+}
+.lane-item img{ width:100%; height:240px; object-fit:cover; display:block }
+.lane-item figcaption{ padding:10px 12px; text-align:left; color:#3a3f46; font-weight:700 }
+
+.lane-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:48px; height:48px; border-radius:50%; border:2px solid #b9b2a8; background:#fff;
+  font-size:24px; cursor:pointer; box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
+.lane-btn.prev{ left:4px } .lane-btn.next{ right:4px }
+
+/* ===== Stories: Sticky timeline ===== */
+.timeline{
+  position:relative; margin-top:14px; text-align:left;
+}
+.timeline::before{
+  content:""; position:absolute; left:clamp(8px, 4vw, 40px); top:0; bottom:0; width:3px; background: linear-gradient(var(--p1), var(--p4));
+  border-radius:4px; opacity:.35;
+}
+.t-card{
+  position:relative; margin-left:clamp(40px, 8vw, 90px); margin-bottom:24px;
+  background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px 16px;
+  box-shadow:0 10px 24px rgba(0,0,0,.06);
+}
+.t-card .t-year{
+  position:absolute; left:calc(-1 * clamp(38px, 7.6vw, 84px)); top:12px;
+  width:64px; height:64px; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, var(--p1), var(--p2));
+  display:grid; place-items:center; color:#fff; font-weight:900; box-shadow:0 8px 18px rgba(0,0,0,.2);
+}
+.t-card h3{ margin:0 0 6px }
+
+/* ===== Lightbox ===== */
+#lightbox{
+  position:fixed; inset:0; z-index:9990; display:none; place-items:center;
+  background: rgba(0,0,0,.75);
+}
+#lightbox.open{ display:grid }
+.lb-img{ max-width:92vw; max-height:84vh; border-radius:10px; box-shadow:0 14px 42px rgba(0,0,0,.4) }
+.lb-cap{ color:#fff; margin-top:10px; text-align:center }
+.lb-close{
+  position:absolute; top:20px; right:20px; width:44px; height:44px; border-radius:50%;
+  border:2px solid #fff; background:#000a; color:#fff; font-size:20px; cursor:pointer;
+}
+
+/* ===== Footer ===== */
+.site-footer{ border-top:1px solid var(--line); padding:22px 0; text-align:center; color:var(--muted) }
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero-inner{ grid-template-columns:1fr; }
+  .hero-copy{ text-align:center }
+  .cta{ justify-content:center }
+}
+
+
+/* ===== Stories: card + media grid ===== */
+.t-head h3{ margin:0 0 6px; }
+.t-note{ margin:0 0 12px; color:var(--muted) }
+
+/* กริดรูปในสตอรี่: 3 moments + 1 cert */
+.t-media{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:12px;
+}
+
+/* moments: กินพื้นที่ 8/12 (2 หรือ 3 ใบต่อแถว) */
+.m-thumb{
+  grid-column: span 4;                 /* 3 คอลัมน์ใน 12 = 3 ใบ/แถว */
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px; overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+.m-thumb img{ width:100%; height:180px; object-fit:cover; display:block; cursor:zoom-in; }
+.m-thumb figcaption{ padding:8px 10px; font-weight:700; color:#3a3f46 }
+
+/* certificate: คอลัมน์ขวา กิน 4/12 */
+.c-thumb{
+  grid-column: span 4;
+  position:relative; display:grid; place-items:center;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--p2), #fff 78%), color-mix(in srgb, var(--p3), #fff 78%));
+  border:1px solid var(--line);
+  border-radius:12px; overflow:hidden;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+}
+.c-thumb img{
+  width:100%; height:100%; max-height:372px; object-fit:contain; padding:10px; background:#fff; cursor:zoom-in;
+}
+.c-thumb .badge{
+  position:absolute; top:10px; left:10px;
+  background:#000c; color:#fff; font-weight:900; font-size:.82rem;
+  padding:4px 10px; border-radius:999px;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .t-media{ grid-template-columns: repeat(6, 1fr); }
+  .m-thumb{ grid-column: span 3; }     /* 2 ใบ/แถว */
+  .c-thumb{ grid-column: span 6; }     /* เต็มแถวล่าง */
+  .m-thumb img{ height:160px; }
+}
+@media (max-width: 560px){
+  .t-media{ grid-template-columns: repeat(2, 1fr); }
+  .m-thumb, .c-thumb{ grid-column: span 2; }
+  .m-thumb img{ height:150px; }
+}
+
+/* ===== Remove timeline line & connectors ===== */
+.timeline::before {
+  display: none !important; /* ไม่ให้เส้นหลักโชว์ */
+}
+
+.t-card::before,
+.t-card::after {
+  display: none !important; /* ไม่ให้ก้านและจุดโชว์ */
+}
+
+/* ปรับ margin กลับมาให้การ์ดไม่เว้นด้านซ้ายเยอะเกิน */
+.t-card {
+  margin-left: 0 !important;
+}
