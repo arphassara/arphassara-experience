@@ -1,14 +1,11 @@
-// Year
 document.addEventListener('DOMContentLoaded', ()=>{
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 });
 
-/* ===== Intro: lens ===== */
 (function(){
   const intro = document.getElementById('lens-intro');
   if (!intro) return;
-  // กันการ scroll ระหว่างอินโทร
   document.documentElement.style.overflow = 'hidden';
   const hide = ()=> {
     intro.classList.add('hidden');
@@ -17,12 +14,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
       document.documentElement.style.overflow = '';
     }, 650);
   };
-  // เผื่อโหลดช้า/เร็ว
   setTimeout(hide, 1600);
   window.addEventListener('load', ()=> setTimeout(hide, 900));
 })();
 
-/* ===== Moments lane: buttons scroll ===== */
 (function(){
   const lane = document.getElementById('momentsLane');
   if (!lane) return;
@@ -34,14 +29,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
   prev.addEventListener('click', ()=> lane.scrollBy({ left: -step(), behavior: 'smooth' }));
   next.addEventListener('click', ()=> lane.scrollBy({ left:  step(), behavior: 'smooth' }));
 
-  // drag/ swipe
   let down=false, sx=0, sl=0;
   lane.addEventListener('pointerdown', e=>{ down=true; sx=e.clientX; sl=lane.scrollLeft; lane.setPointerCapture(e.pointerId); });
   lane.addEventListener('pointermove', e=>{ if(!down) return; lane.scrollLeft = sl - (e.clientX - sx); });
   lane.addEventListener('pointerup',   ()=> down=false);
 })();
 
-/* ===== Certificates: open lightbox from back side button ===== */
 (function(){
   const lb  = document.getElementById('lightbox');
   const img = lb?.querySelector('.lb-img');
@@ -64,7 +57,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 
-/* ===== Lightbox for story media (moments + cert) ===== */
 (function(){
   const lb  = document.getElementById('lightbox');
   const img = lb?.querySelector('.lb-img');
@@ -79,3 +71,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
   });
 })();
+
